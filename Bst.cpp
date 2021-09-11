@@ -62,18 +62,18 @@ bool printAncestors(Node *root,int target)
     }
     return false;
 }
-bool printDescedent(Node *node,int target)
+bool printDescedent(Node *root,int t)
 {
-    if (node == NULL)
+
+   if (root == NULL)
         return false;
-    if(node->data==target)
-        return true;
-    if(printAncestors(node->left,target)||printAncestors(node->right,target))
-    {
-        cout<<node->data<<" ";
-        return true;
-    }
-    return false;
+      printDescedent(root->left,t);
+
+    if(root->data!=t)
+        cout<<root->data<< " ";
+    printDescedent(root->right,t);
+
+
 }
 
 int size(Node* Node)
@@ -189,13 +189,19 @@ int main()
     cout << "\n\n Postorder traversal of binary tree is \n";
     printPostorder(root);
     printf("\n");
-	int k = 25;
+	int k;
+	printf("enter node\n");
+	scanf("%d",&k);
     cout << "\n\n(b) Depth: "<< findDepth(root, k) << "\n";
     cout << "\n\n(c) Height: " << findHeight(root, k);
-	printf("\n\n(d) Ancestors:\n");
-	printAncestors(root, 20);
-	printf("\n\n(e) Des\n");
-    printDescedent(root,30);
+	printf("\n\n(d)Enter Ancestor node:\n");
+	int l;
+	scanf("%d",&l);
+	printAncestors(root, l);
+	printf("\n\n(e)Enter Descedent node\n");
+	int m;
+	scanf("%d",&m);
+    printDescedent(root,m);
 
     cout<<"\n\n(f) size of the tree is " << size(root);
     printf("\n\n(g) LeafNode: \n");
